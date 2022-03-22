@@ -1,0 +1,29 @@
+{
+    "customers": [
+     
+       {
+          "id":"7",
+          "name": "Haynrikh",
+          "surname": "Santrosyan",
+          "orderid": 56
+       },
+       {
+        "id":"9",
+        "name": "Sevak",
+        "surname": "Ghazarian",
+        "orderid": 24
+     },
+     {
+        "id":"1",
+        "name": "Pavlos",
+        "surname": "Jhonson",
+        "orderid": 72
+     },
+     {
+        "id":"3",
+        "name": "John",
+        "surname": "Doe",
+        "orderid": 142
+     }
+    ]
+ }
