@@ -43,12 +43,10 @@ app.get("/notes/:id", (req, res) => {
 });
 
 app.post("/note", (req, res) => {
-  let temp = {
-    id: req.body.id,
+  notes.push({
     title: req.body.title,
     isDone: req.body.isDone,
-  };
-  notes.push(temp);
+  });
   res.status(201);
   res.send(notes);
 });
