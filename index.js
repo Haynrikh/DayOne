@@ -4,26 +4,65 @@ const port = 5000;
 const data = require('./hello.json');
 const customers = data.customers;
 
-const order = [
-        {    id: 142,
-            item: "Playstation 4"
+const notes = [
+    {
+        id: 6,
+        title: "Josh",
+        isDone: true
+    },
+    {
+        id: 2,
+        title: "Gabriel",
+        isDone: false
+    },
+    {
+        id: 7,
+        title: "Srapion",
+        isDone: true
+    }
+]
 
-        },
-        {    id: 24,
-            item: "X box"
-        },
-        {    id: 56,
-            item: "PSP"
-        },
-        {    id: 72,
-            item: "PC"
-        }
-    ]
+app.use(express.json());
+
+function getNotes() {
+    return notes;
+}
 
 
-app.get('/customers', (req, res) => {
-    res.send(customers)
+
+
+  app.get('/notes', (req, res) => {
+          const notes = getNotes();
+          res.send(notes)
+  })
+
+  app.get('/notes/:id', (req, res) => {
+    const finder = notes.find(note => note.id == req.params.id);
+    if (finder) {
+        const temp = finder;
+        res.status(201);
+        res.send(finder)
+    }
+})
+
+app.post('/note', (req, res) => {
+    let temp = {
+        "id": req.body.id,
+        "title": req.body.title,
+        "isDone": req.body.isDone
+    }
+    res.status(201);
+    res.send(temp)
   });
+
+app.delete('/note/:id', (req, res) => {
+    const finder = notes.find(note => note.id == req.params.id);
+    if (finder) {
+        notes.pop(finder)
+    }
+        res.status(201);
+        res.send(notes)
+})
 
   app.get('/customers/orders', (req, res) => {
 
@@ -41,6 +80,7 @@ app.get('/customers', (req, res) => {
     // }
 
 })
+
 
 app.get('/customers/orders/:givebyorderid', (req, res) => {
     if (req.params.givebyorderid < 0) {
