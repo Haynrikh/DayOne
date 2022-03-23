@@ -13,7 +13,7 @@ const getNotes = async (req, res) => {
     if (error) {
       throw error;
     }
-    res.status(200).json(results.rows);
+    await res.status(200).json(results.rows);
   });
 };
 
@@ -26,7 +26,7 @@ const createNote = async (req, res) => {
       if (error) {
         throw error;
       } else {
-        res.status(201).send(`Note added`);
+        await res.status(201).send(`Note added`);
       }
     }
   );
@@ -42,7 +42,7 @@ const updateNote = async (req, res) => {
       if (error) {
         throw error;
       }
-      res.status(200).send(`Note modified`);
+      await res.status(200).send(`Note modified`);
     }
   );
 };
@@ -52,7 +52,7 @@ const deleteNote = async (req, res) => {
     if (error) {
       throw error;
     }
-    res.status(200).send(`Note deleted with ID: ${id}`);
+    await res.status(200).send(`Note deleted with ID: ${id}`);
   });
 };
 
