@@ -8,8 +8,8 @@ const pool = new Pool({
   password: "mypass",
   port: 5432,
 });
-const getUsers = (req, res) => {
-  pool.query("SELECT * FROM todo", (error, results) => {
+const getNotes = async (req, res) => {
+  pool.query("SELECT * FROM todo", async (error, results) => {
     if (error) {
       throw error;
     }
@@ -17,48 +17,48 @@ const getUsers = (req, res) => {
   });
 };
 
-const createUser = (req, res) => {
+const createNote = async (req, res) => {
   const { id, title, done } = req.body;
   pool.query(
     "INSERT INTO todo (id, title, done) VALUES ($1, $2, $3)",
     [id, title, done],
-    (error, response) => {
+    async (error, response) => {
       if (error) {
         throw error;
       } else {
-        res.status(201).send(`User added`);
+        res.status(201).send(`Note added`);
       }
     }
   );
 };
 
-const updateUser = (req, res) => {
+const updateNote = async (req, res) => {
   const id = req.body.id;
   const { title, done } = req.body;
   pool.query(
     "UPDATE todo SET title = $1, done = $2 WHERE id = $3",
     [title, done, id],
-    (error, results) => {
+    async (error, results) => {
       if (error) {
         throw error;
       }
-      res.status(200).send(`User modified`);
+      res.status(200).send(`Note modified`);
     }
   );
 };
-const deleteUser = (req, res) => {
+const deleteNote = async (req, res) => {
   const id = req.body.id;
-  pool.query("DELETE FROM todo WHERE id = $1", [id], (error, results) => {
+  pool.query("DELETE FROM todo WHERE id = $1", [id], async (error, results) => {
     if (error) {
       throw error;
     }
-    res.status(200).send(`User deleted with ID: ${id}`);
+    res.status(200).send(`Note deleted with ID: ${id}`);
   });
 };
 
 module.exports = {
-  getUsers,
-  createUser,
-  updateUser,
-  deleteUser,
+  getNotes,
+  createNote,
+  updateNote,
+  deleteNote,
 };
