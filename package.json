@@ -1,6 +1,33 @@
 {
   "dependencies": {
+    "body-parser": "^1.19.2",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "nodemon": "^2.0.15"
-  }
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3",
+    "supertest": "^6.2.2"
+  },
+  "name": "dayone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haynrikh/DayOne.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Haynrikh/DayOne/issues"
+  },
+  "homepage": "https://github.com/Haynrikh/DayOne#readme",
+  "description": ""
 }
